@@ -21,9 +21,11 @@ function pushb {
 category=$(~/verus-cli/verus gettransaction $1 | grep category)
 
 
+# If you use Pushover, comment out the "pushb" lines (put a # in front of the line)
+# If you use Pushbullet, comment out the "pusho" lines
 case $category in
 
-*receive*                                                                                                                                                         *receive*)
+*receive*)                                                                                                                                                         *receive*)
   pusho "You just received more Verus!"
   pushb "You just received more Verus!"
   ;;
