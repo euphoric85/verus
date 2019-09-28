@@ -44,9 +44,24 @@ echo "Launching Verus daemon!"
 echo "This will run in the background on this computer. If you want to stake VRSC, this computer and the verus daemon need to be running 24/7."
 screen -dmS verusd ~/verus-cli/verusd -mint
 
-echo "Waiting for the daemon to finish loading..."
-until ~/verus-cli/verus importprivkey $seed
-do
-  sleep 60
-done
-echo "Your wallet ^^^ has been successfully imported"
+if [ "$existingwallet" == "y" ]; then
+  echo "Waiting for the daemon to finish loading..."
+  until ~/verus-cli/verus importprivkey $seed
+  do
+    sleep 60
+  done
+  echo "Your wallet ^^^ has been successfully imported"
+else; then
+  ~/verus-cli/verus getaccountaddress ""
+  echo "^^ this is your transparent address. Any coins you want to stake live here."
+  echo "You will also use mainly this address for trading between other users and exchanges."
+  echo ""
+  ~/verus-cli/verus z_getnewaddress sapling
+  echo "^^ this is your z address. You use this for shielding coins as well as for private transactions where supported"
+  echo "Please save both of these addresses in a safe place" 
+fi
+
+echo "You're done! Verus daemon is now running on this computer."
+echo ""
+echo "For more information about Veruscoin, please visit https://veruscoin.io"
+echo "Verus has an active, friendly community.  Join the conversation on the official Discord server https://discord.gg/VRKMP2S"
