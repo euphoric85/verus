@@ -51,7 +51,7 @@ if [ "$existingwallet" == "y" ]; then
     sleep 60
   done
   echo "Your wallet ^^^ has been successfully imported"
-else; then
+else
   ~/verus-cli/verus getaccountaddress ""
   echo "^^ this is your transparent address. Any coins you want to stake live here."
   echo "You will also use mainly this address for trading between other users and exchanges."
